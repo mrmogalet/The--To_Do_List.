@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upcoming Events</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="todo-container">
+    <h1>📅 Upcoming Events</h1>
+    <ul id="upcomingList"></ul>
+    <a href="index.html" class="start-btn" style="margin-top: 20px;">Back</a>
+  </div>
+
+  <script>
+    const upcomingList = document.getElementById("upcomingList");
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    if (tasks.length === 0) {
+      upcomingList.innerHTML = "<li>No upcoming events found.</li>";
+    } else {
+      tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${task.text}</strong><br /><small>${task.date} at ${task.time}</small>`;
+        upcomingList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
